@@ -1,63 +1,161 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style:none;
-}
-
-html {
-    font-family: CircularSpTitle, CircularSpTitle-Tall, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, 
-    sans-serif;
-}
-
-section {
-    background: linear-gradient(rgba(11,1,1,0.9), 0%, rgb(141,181,128) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-section div.main {
-    margin: 32px 0;
-    padding: 32px;
-    width: 734px;
-    height: 910px;
-    background: #C2CFB2;
-    border-radius: 5px;
-}
-
-section div.main h1 {
-    text-align: center;
-    margin: 48px 0;
-    color: white;
-    font-size: 48px
-}
-
-section div.main .account-connect {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-section div.main .account-connect button {
-    width: 324px;
-    text-align: center;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    margin: 5px 0;
-    border-radius: 500px;
-    color: white;
-    background: transparent;
-    border: 1px solid white;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-section div.main .account-connect button span{
+body {
+    background: #1d2026;
+    min-height: 100vh;
+    width: 100%;
+    color: #fff;
     position: relative;
-    top: 3 px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    padding: 20px 8%
+}
+
+nav .menu-img {
+    width: 25px;
+    margin-right: 0px;
+    cursor: pointer;
+}
+
+nav .logo {
+    width: 250px;
+    cursor: pointer;
+    margin-left: -70px;
+}
+
+nav ul {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.button {
+    background: #efefef;
+    height: 30px;
+    width: 60px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+
+.button span {
+    display: block;
+    background: #999;
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    margin-left: -2px;
+    margin-top: 0.5px;
+    transition: background 0.5s, margin-left 0.5s;
+}
+
+.lamp-container {
+    position: absolute;
+    top: -200px;
+    left: 17%;
+    width: 500px;
+}
+
+.lamp {
+    width: 100%;
+}
+
+.light {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    margin-left: -10px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.text-container {
+    max-width: 600px;
+    margin-top: 7%;
+    margin-left: 50%;
+}
+
+.text-container h1 {
+    font-size: 80px;
+    font-weight: 400;
+}
+
+.button2 {
+    margin-top: 20px;
+    background: #025f2f;
+    height: 50px;
+    width: 190px;
+    border-radius: 60px;
+    outline: 0;
+    cursor: pointer;
+    transition: background 0.5s;
+    border-color: #025f2f;
+    text-decoration: goldenrod;
+
+}
+
+.spotify-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00986f;
+    height: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.spotify-btn:hover {
+    opacity: 0.7;
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 150px;
+}
+
+.control .line {
+    width: 250px;
+    height: 4px;
+    background: #fff;
+    margin: 0 20px;
+    border-radius: 2px;
+}
+
+.control .line span {
+    width: 50%;
+    height: 8px;
+    margin-top: -2px;
+    border-radius: 4px;
+    background: #00986f;
+    display: block;
+}
+
+.active {
+    background: green;
+}
+
+.active span {
+    background: #fff;
+    margin-left: 24px;
+}
+
+.on {
+    opacity: 1;
+}

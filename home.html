@@ -2,49 +2,58 @@
 <html>
 <head>
     
-    //unncessary
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Log In Page</title>
     <link rel="stylesheet" href="homestyle.css">
 </head>
     <body>
-        <section>
-            <div class = "main">
-                
+        <div class = "main">
+            <nav>
+                <img src="images/menu.png" class="menu-img">
+                <img src="images/aalogo.png" class="logo">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Placeholder</a></li>
+                    <li><a href="">Placeholder</a></li>
+                </ul>
+                <button class="button" onclick="toggleBtn()" id="btn"><span></span></button>
+            </nav>
 
-                <h1>Log in to Spotify</h1>
+            <div class="lamp-container">
+                <img src="images/disk.png" class="lamp">
+                <img src="images/music.png" class="light" id="light">
+            </div>
 
-                <div class = "account-connect">
-                    <button class = 'a-c-btn' id = 'g' onclick="requestAuthorization()"><img src="images/google.png" height = '80'><span>Continue with Google</span></button>
-                    <script src = "home.js"></script>
-                </div>
+            <div class="text-container">
+                <h1>Welcome to your time capsule...</h1>
+                <p>Compare your taste in music from now to previous years!</p>
+           <!--   <a><button class = 'spotify-btn' id = 'g' onclick="requestAuthorization()" height="80"><img src="images/spotify.jpg"></button></a> -->  
+                <a>
+                <button class="button2" id = 'g' onclick="requestAuthorization()">
+                    <img src="images/spotify.png" alt="Spotify Icon" class="spotify-btn" style="float:left"> Log in with Spotify.
+                </button>
+                </a>
 
-                <!-- <div class = 'log-in'>
-                    <form>
-                        <label>Email or username</label>
-                        <input type="text" placeholder = "Email or username">
-
-                        <label>Password</label>
-                        <input type="text" placeholder = "Password">
-
-                        <div class = 'switch'>
-                            <input type ="checkbox" id = "switch" checked>
-                            <label for="switch"></label>
-                            <span>Remember me</span>
-                        </div>
-
-                        <button>Log In</button>
-                        <a href="#">Forgot your password?</a>
-                    </form>
-                </div> -->
-
-                <hr>
-                <div class="last">
-                    <span>Don't have an account?</span>
+                <div class="control">
+                    <p>04</p>
+                    <div class="line"><span></span></div>
+                    <p>05</p>
                 </div>
 
             </div>
-        </section>
+                <script src = "home.js"></script>
+
+        </div>
+        <script>
+            var btn = document.getElementById("btn");
+            var light = document.getElementById("light");
+
+            function toggleBtn() {
+                btn.classList.toggle("active")
+                light.classList.toggle("on")
+            }
+        </script>
     </body>
 </html>
