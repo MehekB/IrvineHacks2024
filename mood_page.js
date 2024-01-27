@@ -9,8 +9,5 @@ function onHappyClick() {
 function onSadClick() {
     mood = 'sad'
     document.getElementById("textField").textContent = "Your mood is: " + mood + ".";
+    console.log(mood)
 }
-
-
-const button = document.querySelector('button');
-button.addEventListener('click', onHappyClick);
