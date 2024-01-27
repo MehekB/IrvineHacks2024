@@ -1,47 +1,52 @@
+const clientId = '92715c01f1f145969e18198e7c7d7ef5';
+const clientSecret = "7bb3f9a893ad41ab973ff267a9e12e02";
+const redirectUri = 'http://localhost:5500/home.html';
+const scope = 'user-top-read user-read-private user-read-email';
+const authUrl = new URL("https://accounts.spotify.com/authorize")
+
+
 //code verifier - randomly made code that fits a specific requirement
 const generateRandomString = (length) => {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const values = crypto.getRandomValues(new Uint8Array(length));
-    return values.reduce((acc, x) => acc + possible[x % possible.length], "");
-  }
-  
-const codeVerifier  = generateRandomString(64);
-
-//transformation of code verifier to make the auth code using SHA-256 alg
-const sha256 = async (plain) => {
-const encoder = new TextEncoder()
-const data = encoder.encode(plain)
-return window.crypto.subtle.digest('SHA-256', data)
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const values = crypto.getRandomValues(new Uint8Array(length));
+  return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
-//returns base64 representation of digested translation
-const base64encode = (input) => {
-return btoa(String.fromCharCode(...new Uint8Array(input)))
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_');
+
+const codeVerifier = generateRandomString(64);
+
+// transformation of code verifier to make the auth code using SHA-256 alg
+function sha256(plain) {
+  // returns promise ArrayBuffer
+  const encoder = new TextEncoder();
+  const data = encoder.encode(plain);
+  return window.crypto.subtle.digest('SHA-256', data);
 }
 
-const generateCodeCallenge = async() => {
-    const hashed = await (sha256(codeVerifier))
-    const codeChallenge = base64encode(hashed);
-    return codeChallenge
+function base64urlencode(a) {
+  // Convert the ArrayBuffer to string using Uint8 array.
+  // btoa takes chars from 0-255 and base64 encodes.
+  // Then convert the base64 encoded to base64url encoded.
+  // (replace + with -, replace / with _, trim trailing =)
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(a)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-const codeChallenge = generateCodeCallenge()
+async function pkce_challenge_from_verifier(v) {
+  hashed = await sha256(v);
+  base64encoded = base64urlencode(hashed);
+  return base64encoded;
+}
 
-function requestAuthorization(){
-//makes auth code
-  const clientId = '92715c01f1f145969e18198e7c7d7ef5';
-  const redirectUri = 'http://localhost:5500/home.html';
 
-  const scope = 'user-top-read user-read-private user-read-email';
-  const authUrl = new URL("https://accounts.spotify.com/authorize")
-
+async function requestAuthorization() {
   // generated in the previous step
   window.localStorage.setItem('code_verifier', codeVerifier);
 
-  const params =  {
+  const codeChallenge = await pkce_challenge_from_verifier(codeVerifier)
+
+  //alert(codeChallenge)
+  const params = {
     response_type: 'code',
     client_id: clientId,
     scope,
@@ -49,41 +54,68 @@ function requestAuthorization(){
     code_challenge: codeChallenge,
     redirect_uri: encodeURI(redirectUri),
   }
-
   authUrl.search = new URLSearchParams(params).toString();
   window.location.href = authUrl.toString();
 }
 
-function onPageLoad() {
-  const urlParams = new URLSearchParams(window.location.search);
-  let code = urlParams.get('code');
-  return code
-}
-
-
+const urlParams = new URLSearchParams(window.location.search);
+let code = urlParams.get('code');
 
 const getToken = async code => {
+  let codeVerifierFromStorage = localStorage.getItem('code_verifier');
+  console.log('CODE VEIRIFGEF FROM STOIEHSGES', codeVerifierFromStorage)
 
-    // stored in the previous step
-    let codeVerifier = localStorage.getItem('code_verifier');
-  
-    const payload = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        client_id: clientId,
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: redirectUri,
-        code_verifier: codeVerifier,
-      }),
+
+  const base64Credentials = btoa(clientId + ':' + clientSecret);
+
+  const payload = {
+    method: 'post',
+    body: new URLSearchParams({
+      client_id: clientId,
+      grant_type: 'authorization_code', code,
+      redirect_uri: redirectUri,
+      code_verifier: codeVerifierFromStorage
+    }),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: 'Basic ' + base64Credentials
     }
-  
-    const body = await fetch(url, payload);
-    const response =await body.json();
-    
-    localStorage.setItem('access_token', response.access_token);
   }
+
+  const response = await fetch("https://accounts.spotify.com/api/token", payload);
+  const data = await response.json();
+  console.log('data', data)
+  localStorage.setItem('access_token', data.access_token);
+  if(data.access_token) window.location.href = 'input_time.html?access_token=' + data.access_token
+
+  // onAuthenticationSuccess()
+}
+
+getToken(code)
+
+// function onAuthenticationSuccess() {
+//   // Redirect to another HTML page after authentication
+//   const targetPage = 'input_time.html';
+//   window.location.href = targetPage;
+// }
+
+async function SENDHELP() {
+  let at = localStorage.getItem('access_token');
+  console.log('HES EWE GOT IT ', at, 'Bearer ' + at)
+
+  const payload = {
+    headers: {
+      Authorization: 'Bearer ' + at
+    }
+  }
+  // try {
+
   
+  const response = fetch("https://api.spotify.com/v1/me", payload).then(res => res.json()).then(console.log);
+  // const res = await response.json()
+  // } catch(e){
+  //   console.log(e)
+  // }
+  // console.log(res)
+
+}
