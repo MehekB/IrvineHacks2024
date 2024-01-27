@@ -1,18 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Website!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Log In Page</title>
+    <link rel="stylesheet" href="homestyle.css">
 </head>
-<body>
-<h1>What mood.</h1>
+    <body>
+        <section>
+            <div class = "main">
+                
 
-    <button onclick="onHappyClick()"><img src="images/happy.jpg" alt="happy emoji" height="200"></button>
+                <h1>Log in to Spotify</h1>
 
-    <button onclick="onSadClick()"><img src="images/sad.jpg" alt="sad emoji" height="200"></button>
-    
-    <div id="textField"></div>
+                <div class = "account-connect">
+                    <button class = 'a-c-btn' id = 'g'><img src="images/google.png" height = '80'><span>Continue with Google</span></button>
+                    <button class = 'a-c-btn' id = 'f'><img src="images/facebook.png" height = '80'><span>Continue with Facebook</span></button>
+                    <button class = 'a-c-btn' id = 'a'><img src="images/apple.png" height = '80'><span>Continue with Apple</span></button>
+                </div>
 
-    <script src="mood_page.js"></script>
+                <div class = 'log-in'>
+                    <form>
+                        <label>Email or username</label>
+                        <input type="text" placeholder = "Email or username">
 
-</body>
+                        <label>Password</label>
+                        <input type="text" placeholder = "Password">
+
+                        <div class = 'switch'>
+                            <input type ="checkbox" id = "switch" checked>
+                            <label for="switch"></label>
+                            <span>Remember me</span>
+                        </div>
+
+                        <button>Log In</button>
+                        <a href="#">Forgot your password?</a>
+                    </form>
+                </div>
+
+                <hr>
+                <div class="last">
+                    <span>Don't have an account?</span>
+                </div>
+
+                <script src = "home.js"></script>
+
+            </div>
+        </section>
+    </body>
 </html>

@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style:none;
+}
+
+html {
+    font-family: CircularSpTitle, CircularSpTitle-Tall, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, 
+    sans-serif;
+}
+
+section {
+    background: linear-gradient(rgba(11,1,1,0.9), 0%, rgb(141,181,128) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section div.main {
+    margin: 32px 0;
+    padding: 32px;
+    width: 734px;
+    height: 910px;
+    background: #C2CFB2;
+    border-radius: 5px;
+}
+
+section div.main h1 {
+    text-align: center;
+    margin: 48px 0;
+    color: white;
+    font-size: 48px
+}
+
+section div.main .account-connect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+section div.main .account-connect button {
+    width: 324px;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    margin: 5px 0;
+    border-radius: 500px;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+section div.main .account-connect button span{
+    position: relative;
+    top: 3 px;
+}
+
