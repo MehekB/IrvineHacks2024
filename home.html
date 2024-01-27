@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src = "home.js"></script>
+    
     //unncessary
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,11 @@
                 <h1>Log in to Spotify</h1>
 
                 <div class = "account-connect">
-                    <button class = 'a-c-btn' id = 'g'><img src="images/google.png" height = '80'><span>Continue with Google</span></button>
-                    <button class = 'a-c-btn' id = 'f'><img src="images/facebook.png" height = '80'><span>Continue with Facebook</span></button>
-                    <button class = 'a-c-btn' id = 'a'><img src="images/apple.png" height = '80'><span>Continue with Apple</span></button>
+                    <button class = 'a-c-btn' id = 'g' onclick="requestAuthorization()"><img src="images/google.png" height = '80'><span>Continue with Google</span></button>
+                    <script src = "home.js"></script>
                 </div>
 
-                <div class = 'log-in'>
+                <!-- <div class = 'log-in'>
                     <form>
                         <label>Email or username</label>
                         <input type="text" placeholder = "Email or username">
@@ -38,7 +37,7 @@
                         <button>Log In</button>
                         <a href="#">Forgot your password?</a>
                     </form>
-                </div>
+                </div> -->
 
                 <hr>
                 <div class="last">
