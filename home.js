@@ -1,9 +1,8 @@
 const clientId = '92715c01f1f145969e18198e7c7d7ef5';
 const clientSecret = "7bb3f9a893ad41ab973ff267a9e12e02";
 const redirectUri = 'http://localhost:5500/home.html';
-const scope = 'user-top-read user-read-private user-read-email';
+const scope = 'user-top-read user-read-private user-read-email playlist-read-private';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
-
 
 //code verifier - randomly made code that fits a specific requirement
 const generateRandomString = (length) => {
@@ -11,7 +10,6 @@ const generateRandomString = (length) => {
   const values = crypto.getRandomValues(new Uint8Array(length));
   return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
-
 
 const codeVerifier = generateRandomString(64);
 
@@ -37,7 +35,6 @@ async function pkce_challenge_from_verifier(v) {
   base64encoded = base64urlencode(hashed);
   return base64encoded;
 }
-
 
 async function requestAuthorization() {
   // generated in the previous step
@@ -65,7 +62,6 @@ const getToken = async code => {
   let codeVerifierFromStorage = localStorage.getItem('code_verifier');
   console.log('CODE VEIRIFGEF FROM STOIEHSGES', codeVerifierFromStorage)
 
-
   const base64Credentials = btoa(clientId + ':' + clientSecret);
 
   const payload = {
@@ -86,36 +82,20 @@ const getToken = async code => {
   const data = await response.json();
   console.log('data', data)
   localStorage.setItem('access_token', data.access_token);
-  if(data.access_token) window.location.href = 'input_time.html?access_token=' + data.access_token
-
-  // onAuthenticationSuccess()
+  if(data.access_token) window.location.href = 'upload.html?access_token=' + data.access_token
 }
 
 getToken(code)
 
-// function onAuthenticationSuccess() {
-//   // Redirect to another HTML page after authentication
-//   const targetPage = 'input_time.html';
-//   window.location.href = targetPage;
+// async function SENDHELP() {
+//   let at = localStorage.getItem('access_token');
+//   const payload = {
+//   headers: {
+//     Authorization: 'Bearer ' + at
+//     }
+//   }
+//   const response = fetch("https://api.spotify.com/v1/me/top/tracks", 
+//     payload).then(res => res.json()).then(console.log);
+//   const res = await response.json()
 // }
 
-async function SENDHELP() {
-  let at = localStorage.getItem('access_token');
-  console.log('HES EWE GOT IT ', at, 'Bearer ' + at)
-
-  const payload = {
-    headers: {
-      Authorization: 'Bearer ' + at
-    }
-  }
-  // try {
-
-  
-  const response = fetch("https://api.spotify.com/v1/me", payload).then(res => res.json()).then(console.log);
-  // const res = await response.json()
-  // } catch(e){
-  //   console.log(e)
-  // }
-  // console.log(res)
-
-}

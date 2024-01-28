@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <head>
+        <title>Drawing Board</title>
+        <link rel = "stylesheet" href="drawing_board.css"/>
+    </head>
+    <style>
+        #div{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
+    <body>
+        <div id="div"></div>
+        <button id="button" onclick="captureBoard()">Done!</button>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/FileSaver@0.10.0/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/drawingboard.js/0.4.2/drawingboard.min.js"></script>
+    <script src="drawing_board.js"></script>
+    <script>
+    $(document).ready(function(){
+        var imageBoard = new DrawingBoard.Board('div',{
+            background: "#FFFF",
+            color: "#000",
+            size: 30,
+            webStorage: "session"
+        });
+    });
+    </script>
+</html>
