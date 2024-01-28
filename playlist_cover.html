@@ -1,6 +1,27 @@
 <!DOCTYPE html>
     <body>
-        <button onclick="createNewCover()">CLICK</button>
+        <h1>Say Hello to your new playlist cover!</h1>
+        <h2> You should get it framed :)</h2>
+        <p>Check your spotify for your new cover...</p>
         <script src = "playlist_cover.js"></script>
+        <script>
+            window.onload = function() {
+                createNewCover();
+            };
+        </script>
+        <style>
+            body {
+                background: #1d2026;
+                min-height: 100vh;
+                width: 100%;
+                color: #fff;
+                position: relative;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                text-align: center;
+            }
+            h1 {
+                padding-top: 300px;
+            }
+        </style>
     </body>
 </html>

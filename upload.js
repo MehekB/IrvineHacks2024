@@ -51,5 +51,6 @@ function topTenPlaylists(json_file) {
 function selectPlaylist(num){
     const storedList = JSON.parse(localStorage.getItem('playlistCollection'));
     const selectedPlaylist = storedList[num-1]
+    localStorage.setItem('playlistImage', selectedPlaylist.photoID)
     localStorage.setItem('selectedPlaylist', selectedPlaylist.id)
 }
