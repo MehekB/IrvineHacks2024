@@ -1,6 +1,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString)
 const access_token = urlParams.get('access_token')
+let selected_playlist = ''
 
 async function getPlaylists(){
     let at = localStorage.getItem('access_token');
@@ -40,18 +41,17 @@ function topTenPlaylists(json_file) {
             if (imageElement) {
                 imageElement.src = playlist.images[0].url;
             }
-
-            console.log("image" + x);
-            console.log(playlist.images[0].url);
-
             x++;
         }
-
         i++;
     }
-
-    console.log(playlists);
-    return playlists;
+    localStorage.setItem('playlistCollection', playlists)
 }
 
-
+function selectPlaylist(playlistName){
+    const playlistArray = Array.from(localStorage.getItem('playlistCollection'));
+    const foundPlaylist = playlistArray.find(playlist => playlist.name === playlistName);
+    localStorage.setItem('selectedPlaylist', foundPlaylist)
+}
+//uses playlist id to change the cover image
+//home --> upload --> drawing_board --> cover_image
