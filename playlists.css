@@ -6,10 +6,6 @@ body {
     position: relative;
 }
 
-h1{
-  text-align: center;
-}
-
 div.gallery {
   margin: 5px;
   border: 1px solid #ccc;
