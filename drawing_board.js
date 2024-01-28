@@ -16,7 +16,10 @@ function captureBoard(){
         context.drawImage(canvas, left, top, width, height, 0, 0, width, height);
 
         // Convert the cropped canvas to a data URL
-        const imageDataURL = croppedCanvas.toDataURL('image/png');
+        const imageDataURL = croppedCanvas.toDataURL('image/jpeg');
+        console.log('IMAGE DATA URL------',imageDataURL)
         localStorage.setItem('dataURL', imageDataURL)
+
+        window.location.href = "playlist_cover.html"
     });
 }

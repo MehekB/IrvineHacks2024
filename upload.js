@@ -35,7 +35,6 @@ function topTenPlaylists(json_file) {
 
         if (playlist.images.length <= 1) {
             playlists.push(new Playlist(playlist.name, playlist.id, playlist.images[0].url));
-            console.log('IMPORTANTTTTTTT',playlist.id);
             // Update the image source using the playlist URL
             let imageElement = document.getElementById("image" + (x + 1));
             document.getElementById('p' + (x + 1)).innerHTML = playlist.name;
@@ -46,14 +45,11 @@ function topTenPlaylists(json_file) {
         }
         i++;
     }
-    localStorage.setItem('playlistCollection', playlists);
-    console.log('LIST OF PLAYLISTS',playlists);
+    localStorage.setItem('playlistCollection', JSON.stringify(playlists));
 }
 
 function selectPlaylist(num){
-    const selectedPlaylist = localStorage.getItem('playlistCollection')[num-1]
+    const storedList = JSON.parse(localStorage.getItem('playlistCollection'));
+    const selectedPlaylist = storedList[num-1]
     localStorage.setItem('selectedPlaylist', selectedPlaylist.id)
-    console.log('SELECTED PLAYLIST ID ---------------', selectedPlaylist.id)
 }
-//uses playlist id to change the cover image
-//home --> upload --> drawing_board --> cover_image
