@@ -8,9 +8,9 @@ body {
 
 div.gallery {
   margin: 5px;
-  border: 1px solid #ccc;
+  border: none; /*1px solid #ccc;*/
   float: left;
-  width: 180px;
+  width: 250px;
   column-count: 2;
 }
 
@@ -24,7 +24,7 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -44,4 +44,5 @@ div.desc {
   clear: both;
   align-: center;
 }
+
 

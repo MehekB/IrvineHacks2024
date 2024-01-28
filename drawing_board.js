@@ -17,6 +17,6 @@ function captureBoard(){
 
         // Convert the cropped canvas to a data URL
         const imageDataURL = croppedCanvas.toDataURL('image/png');
-        localStorage.setItem('cover', imageDataURL)
+        localStorage.setItem('dataURL', imageDataURL)
     });
 }

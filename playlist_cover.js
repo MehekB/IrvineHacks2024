@@ -1,13 +1,15 @@
-let newCover = localStorage.getItem('cover')
+let playlistID = localStorage.getItem('selectedPlaylist')
 let at = localStorage.getItem('access_token')
-let dataURL = localStorage.getItem('imageDataURL')
-const apiUrl = `https://api.spotify.com/v1/playlists/${newCover}/images`
+let dataURL = localStorage.getItem('dataURL')
+const apiUrl = `https://api.spotify.com/v1/playlists/${playlistID}/images`
 
-
-console.log(newCover.photoID)
+console.log("PLAYLIST ID", playlistID)
+console.log("access token:",at)
+console.log("data url",dataURL)
+console.log("api url",apiUrl)
 //use api for customize playlist cover
 async function createNewCover(){
-    const reseponse = await fetch(apiUrl, {
+    const response = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
         'Authorization': `Bearer `+ at,
@@ -18,7 +20,9 @@ async function createNewCover(){
         })
     })
     const res = (await response.json())
-    console.log(newCover.photoID)
+    console.log("stuff!!------",res)
+    console.log("new playlist id:",playlistID)
 }
 
+// createNewCover()
 
