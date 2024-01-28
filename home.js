@@ -1,7 +1,7 @@
 const clientId = '92715c01f1f145969e18198e7c7d7ef5';
 const clientSecret = "7bb3f9a893ad41ab973ff267a9e12e02";
 const redirectUri = 'http://localhost:5500/home.html';
-const scope = 'user-top-read user-read-private user-read-email playlist-read-private';
+const scope = 'playlist-modify-public playlist-modify-private user-top-read user-read-private user-read-email playlist-read-private ugc-image-upload';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
 
 //code verifier - randomly made code that fits a specific requirement
@@ -60,7 +60,6 @@ let code = urlParams.get('code');
 
 const getToken = async code => {
   let codeVerifierFromStorage = localStorage.getItem('code_verifier');
-  console.log('CODE VEIRIFGEF FROM STOIEHSGES', codeVerifierFromStorage)
 
   const base64Credentials = btoa(clientId + ':' + clientSecret);
 
@@ -80,22 +79,9 @@ const getToken = async code => {
 
   const response = await fetch("https://accounts.spotify.com/api/token", payload);
   const data = await response.json();
-  console.log('data', data)
   localStorage.setItem('access_token', data.access_token);
   if(data.access_token) window.location.href = 'upload.html?access_token=' + data.access_token
 }
 
 getToken(code)
-
-// async function SENDHELP() {
-//   let at = localStorage.getItem('access_token');
-//   const payload = {
-//   headers: {
-//     Authorization: 'Bearer ' + at
-//     }
-//   }
-//   const response = fetch("https://api.spotify.com/v1/me/top/tracks", 
-//     payload).then(res => res.json()).then(console.log);
-//   const res = await response.json()
-// }
 

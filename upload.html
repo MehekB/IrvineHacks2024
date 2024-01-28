@@ -1,9 +1,101 @@
 <!DOCTYPE html>
-    <body>
-        <canvas id = "My Canvas"
-                style = "background:pink"
-                width="320" height="320"></canvas>
-        <button class="button" onclick="wow()" style="width: 100px; height: 100px"></button>
-        <script src = "upload.js"></script>
-    </body>
+<html>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Page</title>
+    <link rel="stylesheet" href="playlists.css">
+</head>
+<body>
+    <h1>Pick One of your Top Ten Playlists:</h1>
+    
+    <div class="row">
+      <div class="column">
+       
+        <div class="gallery">
+          <a target="_blank" href="images/disk.png">
+            <img src="images/disk.png" alt="Vinyl Disk" width="600" height="400" id="image1">
+          </a>
+          <div class="desc">Playlist 1</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_forest.jpg">
+            <img src="images/disk.png" alt="Forest" width="600" height="400" id="image2">
+          </a>
+          <div class="desc">Playlist 2</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image3">
+          </a>
+          <div class="desc">Playlist 3</div>
+        </div>
+        
+        <div class="gallery">
+          <a target="_blank" href="img_mountains.jpg">
+            <img src="images/disk.png" alt="Mountains" width="600" height="400" id="image4">
+          </a>
+          <div class="desc">Playlist 4</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image5">
+          </a>
+          <div class="desc">Playlist 5</div>
+        </div>
+
+        </div>
+
+        <div class="column">
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image6">
+          </a>
+          <div class="desc">Playlist 6</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image7">
+          </a>
+          <div class="desc">Playlist 7</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image8">
+          </a>
+          <div class="desc">Playlist 8</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image9">
+          </a>
+          <div class="desc">Playlist 9</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank" href="img_lights.jpg">
+            <img src="images/disk.png" alt="Northern Lights" width="600" height="400" id="image10">
+          </a>
+          <div class="desc">Playlist 10</div>
+        </div>
+      </div>
+
+    <script src="upload.js"></script>
+    <script>
+    // Call your function after the DOM has loaded
+    window.onload = function() {
+        getPlaylists();
+    };
+    </script>
+
+</body>
+
 </html>

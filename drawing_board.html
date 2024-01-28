@@ -2,6 +2,8 @@
     <head>
         <title>Drawing Board</title>
         <link rel = "stylesheet" href="drawing_board.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     </head>
     <style>
         #div{
@@ -14,11 +16,11 @@
         <div id="div"></div>
         <button id="button" onclick="captureBoard()">Done!</button>
     </body>
+    <script src="drawing_board.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/FileSaver@0.10.0/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/drawingboard.js/0.4.2/drawingboard.min.js"></script>
-    <script src="drawing_board.js"></script>
     <script>
     $(document).ready(function(){
         var imageBoard = new DrawingBoard.Board('div',{
