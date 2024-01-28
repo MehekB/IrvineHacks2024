@@ -45,13 +45,11 @@ function topTenPlaylists(json_file) {
         }
         i++;
     }
-    console.log('LIST OF PLAYLISTS',playlists);
     localStorage.setItem('playlistCollection', JSON.stringify(playlists));
 }
 
 function selectPlaylist(num){
     const storedList = JSON.parse(localStorage.getItem('playlistCollection'));
     const selectedPlaylist = storedList[num-1]
-    console.log('SELECTED-----------',selectedPlaylist.id)
     localStorage.setItem('selectedPlaylist', selectedPlaylist.id)
 }

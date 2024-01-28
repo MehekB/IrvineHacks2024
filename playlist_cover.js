@@ -7,6 +7,7 @@ console.log("PLAYLIST ID", playlistID)
 console.log("access token:",at)
 console.log("data url",dataURL)
 console.log("api url",apiUrl)
+
 //use api for customize playlist cover
 async function createNewCover(){
     const response = await fetch(apiUrl, {
@@ -23,6 +24,4 @@ async function createNewCover(){
     console.log("stuff!!------",res)
     console.log("new playlist id:",playlistID)
 }
-
-// createNewCover()
 
