@@ -1,13 +1,22 @@
 function captureBoard(){
-    const canvas = document.getElementById('drawing-board-canvas-wrapper');
-    
-    // Convert canvas to dataURL and log to console
-    console.log(canvas)
-    const dataURL = canvas.toDataURL();
-    console.log(dataURL);
-    // Logs data:image/png;base64,wL2dvYWwgbW9yZ...
+    html2canvas(document.body).then(canvas => {
+        // Set the dimensions of the area you want to crop
+        const left = 20;   // Adjust these values as needed
+        const top = 95;
+        const width = 900;
+        const height = 900;
 
-    // Convert to Base64 string
-    const base64 = getBase64StringFromDataURL(dataURL);
-    console.log(base64);
+        // Create a new canvas to hold the cropped image
+        const croppedCanvas = document.createElement('canvas');
+        const context = croppedCanvas.getContext('2d');
+        croppedCanvas.width = width;
+        croppedCanvas.height = height;
+
+        // Crop the image
+        context.drawImage(canvas, left, top, width, height, 0, 0, width, height);
+
+        // Convert the cropped canvas to a data URL
+        const imageDataURL = croppedCanvas.toDataURL('image/png');
+        localStorage.setItem('cover', imageDataURL)
+    });
 }

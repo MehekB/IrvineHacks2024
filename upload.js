@@ -23,39 +23,6 @@ class Playlist{
     }
 }
 
-/*
-function topTenPlaylists(json_file){
-    let playlists = new Set()
-    const items = json_file.items
-    let x = 0
-    let i = 0
-    while(x < 10){
-        playlist = items[i]
-        if (playlist.images.length <= 1){
-            playlists.add(new Playlist(playlist.name, playlist.id, playlist.images[0].url))
-            console.log("image"+x)
-            alert(console.log(playlist.images[0].url))
-            document.getElementById("image"+(x+1)).src=playlist.images[0].url
-            x++
-        }
-        i++
-    }
-    console.log(playlists)
-    return playlists
-}
-
-/*
-function topTenPlaylists(json_file) {
-    playlist = json_file.items[0]
-
-    let playlists = new Set()
-  //  const items = json_file.items[0]
-   // playlists.add(new Playlist(playlists.name, playlists.id, playlists.images[0].url))
-    console.log("image1")
-    document.getElementById("image1").src = playlist.url
-}
-*/
-
 function topTenPlaylists(json_file) {
     let playlists = new Set();
     const items = json_file.items;
