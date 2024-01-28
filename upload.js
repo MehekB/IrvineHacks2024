@@ -40,7 +40,7 @@ function topTenPlaylists(json_file){
     while(x<10){
         playlist = items[i]
         if (playlist.images.length <=1){
-            playlists.add(new Playlist(playlist.name, playlist.id))
+            playlists.add(new Playlist(playlist.name, playlist.id, playlist.images[0].url))
             x++
         }
         i++
