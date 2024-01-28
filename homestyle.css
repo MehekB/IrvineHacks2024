@@ -79,7 +79,7 @@ nav ul li a {
     top: 97%;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 700px;
     margin-left: -10px;
     opacity: 0;
     transition: opacity 0.5s;
