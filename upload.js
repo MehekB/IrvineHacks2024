@@ -25,7 +25,7 @@ class Playlist{
 }
 
 function topTenPlaylists(json_file) {
-    let playlists = new Set();
+    let playlists = [];
     const items = json_file.items;
     let x = 0;
     let i = 0;
@@ -34,7 +34,7 @@ function topTenPlaylists(json_file) {
         let playlist = items[i];
 
         if (playlist.images.length <= 1) {
-            playlists.add(new Playlist(playlist.name, playlist.id, playlist.images[0].url));
+            playlists.push(new Playlist(playlist.name, playlist.id, playlist.images[0].url));
 
             // Update the image source using the playlist URL
             let imageElement = document.getElementById("image" + (x + 1));
@@ -48,10 +48,9 @@ function topTenPlaylists(json_file) {
     localStorage.setItem('playlistCollection', playlists)
 }
 
-function selectPlaylist(playlistName){
-    const playlistArray = Array.from(localStorage.getItem('playlistCollection'));
-    const foundPlaylist = playlistArray.find(playlist => playlist.name === playlistName);
-    localStorage.setItem('selectedPlaylist', foundPlaylist)
+function selectPlaylist(num){
+    const selectedPlaylist = localStorage.getItem('playlistCollection')[num-1]
+    localStorage.setItem('selectedPlaylist', selectedPlaylist)
 }
 //uses playlist id to change the cover image
 //home --> upload --> drawing_board --> cover_image
