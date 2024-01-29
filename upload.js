@@ -1,10 +1,10 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString)
 const access_token = urlParams.get('access_token')
-let selected_playlist = ''
+let at = localStorage.getItem('access_token');
 
+console.log('-------------------'+ access_token)
 async function getPlaylists(){
-    let at = localStorage.getItem('access_token');
     const response = await fetch('https://api.spotify.com/v1/me/playlists', {
     method: 'GET',
     headers: {
@@ -13,7 +13,18 @@ async function getPlaylists(){
         },
     })
     const res = (await response.json())
-    topTenPlaylists(res)
+    getUsername(res)
+}
+
+async function getUsername(json_file) {
+    const response = await fetch('https://api.spotify.com/v1/me', {
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + at
+        }
+    })
+    const res = (await response.json())
+    topTenPlaylists(json_file, res.display_name)
 }
 
 class Playlist{
@@ -24,18 +35,16 @@ class Playlist{
     }
 }
 
-function topTenPlaylists(json_file) {
+function topTenPlaylists(json_file, user) {
     let playlists = [];
     const items = json_file.items;
     let x = 0;
     let i = 0;
-
     while (x < 10 && i < items.length) {
         let playlist = items[i];
-
-        if (playlist.images.length <= 1) {
+        if (playlist.owner.display_name ===  user) {
+            console.log('True')
             playlists.push(new Playlist(playlist.name, playlist.id, playlist.images[0].url));
-            // Update the image source using the playlist URL
             let imageElement = document.getElementById("image" + (x + 1));
             document.getElementById('p' + (x + 1)).innerHTML = playlist.name;
             if (imageElement) {
@@ -53,4 +62,5 @@ function selectPlaylist(num){
     const selectedPlaylist = storedList[num-1]
     localStorage.setItem('playlistImage', selectedPlaylist.photoID)
     localStorage.setItem('selectedPlaylist', selectedPlaylist.id)
+    console.log('---------------',selectedPlaylist)
 }
