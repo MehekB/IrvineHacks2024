@@ -1,9 +1,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString)
-const access_token = urlParams.get('access_token')
 let at = localStorage.getItem('access_token');
 
-console.log('-------------------'+ access_token)
 async function getPlaylists(){
     const response = await fetch('https://api.spotify.com/v1/me/playlists', {
     method: 'GET',
@@ -43,7 +41,6 @@ function topTenPlaylists(json_file, user) {
     while (x < 10 && i < items.length) {
         let playlist = items[i];
         if (playlist.owner.display_name ===  user) {
-            console.log('True')
             playlists.push(new Playlist(playlist.name, playlist.id, playlist.images[0].url));
             let imageElement = document.getElementById("image" + (x + 1));
             document.getElementById('p' + (x + 1)).innerHTML = playlist.name;
@@ -62,5 +59,4 @@ function selectPlaylist(num){
     const selectedPlaylist = storedList[num-1]
     localStorage.setItem('playlistImage', selectedPlaylist.photoID)
     localStorage.setItem('selectedPlaylist', selectedPlaylist.id)
-    console.log('---------------',selectedPlaylist)
 }
