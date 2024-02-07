@@ -1,6 +1,6 @@
 const clientId = '92715c01f1f145969e18198e7c7d7ef5';
 const clientSecret = "7bb3f9a893ad41ab973ff267a9e12e02";
-const redirectUri = 'http://localhost:5500/home.html';
+const redirectUri = 'https://mehekb.github.io/IrvineHacks2024/home.html';
 const scope = 'playlist-modify-public playlist-modify-private user-top-read user-read-private user-read-email playlist-read-private ugc-image-upload';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
 
@@ -22,10 +22,6 @@ function sha256(plain) {
 }
 
 function base64urlencode(a) {
-  // Convert the ArrayBuffer to string using Uint8 array.
-  // btoa takes chars from 0-255 and base64 encodes.
-  // Then convert the base64 encoded to base64url encoded.
-  // (replace + with -, replace / with _, trim trailing =)
   return btoa(String.fromCharCode.apply(null, new Uint8Array(a)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
@@ -37,12 +33,11 @@ async function pkce_challenge_from_verifier(v) {
 }
 
 async function requestAuthorization() {
-  // generated in the previous step
+
   window.localStorage.setItem('code_verifier', codeVerifier);
 
   const codeChallenge = await pkce_challenge_from_verifier(codeVerifier)
 
-  //alert(codeChallenge)
   const params = {
     response_type: 'code',
     client_id: clientId,
@@ -56,13 +51,14 @@ async function requestAuthorization() {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-let code = urlParams.get('code');
+let code = urlParams.get('code')
 
 const getToken = async code => {
+
   let codeVerifierFromStorage = localStorage.getItem('code_verifier');
-
+  
   const base64Credentials = btoa(clientId + ':' + clientSecret);
-
+  
   const payload = {
     method: 'post',
     body: new URLSearchParams({
@@ -76,12 +72,13 @@ const getToken = async code => {
       Authorization: 'Basic ' + base64Credentials
     }
   }
-
   const response = await fetch("https://accounts.spotify.com/api/token", payload);
   const data = await response.json();
+  console.log(data)
+
   localStorage.setItem('access_token', data.access_token);
+  console.log('TOKEN----------------',data.access_token)
   if(data.access_token) window.location.href = 'upload.html?access_token=' + data.access_token
 }
 
 getToken(code)
-
