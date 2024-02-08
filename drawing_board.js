@@ -2,7 +2,7 @@ function captureBoard(){
     html2canvas(document.body).then(canvas => {
         // Set the dimensions of the area you want to crop
         const left = 20;   // Adjust these values as needed
-        const top = 95;
+        const top = 80;
         const width = 900;
         const height = 900;
 
