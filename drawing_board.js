@@ -5,7 +5,7 @@ function captureBoard(){
         const left = 20;   // Adjust these values as needed
         const top = 90;
         const width = 930;
-        const height = 870;
+        const height = 860;
 
         // Create a new canvas to hold the cropped image
         const croppedCanvas = document.createElement('canvas');
