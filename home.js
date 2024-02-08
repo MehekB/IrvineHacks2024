@@ -74,10 +74,8 @@ const getToken = async code => {
   }
   const response = await fetch("https://accounts.spotify.com/api/token", payload);
   const data = await response.json();
-  console.log(data)
 
   localStorage.setItem('access_token', data.access_token);
-  console.log('TOKEN----------------',data.access_token)
   if(data.access_token) window.location.href = 'upload.html?access_token=' + data.access_token
 }
 
