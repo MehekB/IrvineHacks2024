@@ -3,8 +3,8 @@ function captureBoard(){
         // Set the dimensions of the area you want to crop
         const left = 20;   // Adjust these values as needed
         const top = 95;
-        const width = 910;
-        const height = 910;
+        const width = 940;
+        const height = 940;
 
         // Create a new canvas to hold the cropped image
         const croppedCanvas = document.createElement('canvas');
