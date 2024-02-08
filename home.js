@@ -1,7 +1,7 @@
 const clientId = '92715c01f1f145969e18198e7c7d7ef5';
 const clientSecret = "7bb3f9a893ad41ab973ff267a9e12e02";
 const redirectUri = 'https://mehekb.github.io/IrvineHacks2024/home.html';
-const scope = 'playlist-modify-public playlist-modify-private user-top-read user-read-private user-read-email playlist-read-private ugc-image-upload';
+const scope = 'playlist-modify-public playlist-modify-private playlist-read-private ugc-image-upload';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
 
 //code verifier - randomly made code that fits a specific requirement
